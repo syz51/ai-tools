@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "watch": "tailwindcss -i styles/styles.css -o static/styles.css --watch",
+    "build": "tailwindcss -i styles/styles.css -o static/styles.css --minify",
+    "air": "air",
+    "dev": "concurrently \"pnpm:watch --color\" \"pnpm:air\""
+  },
+  "dependencies": {
+    "tailwindcss": "^3.3.6"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

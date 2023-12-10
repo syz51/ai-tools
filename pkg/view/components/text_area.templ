@@ -1,0 +1,14 @@
+package components
+
+templ TextArea(id string, name string, label string, placeholder string, readonly bool) {
+	<div class="relative flex flex-col w-full md:w-1/3">
+		<label for={ id } class="mb-2 text-sm font-medium text-gray-700">{ label }</label>
+		<textarea
+ 			id={ id }
+ 			name={ name }
+ 			class="h-48 p-4 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 resize-none"
+ 			placeholder={ placeholder }
+ 			readonly?={ readonly }
+		></textarea>
+	</div>
+}

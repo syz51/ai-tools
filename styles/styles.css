@@ -1,0 +1,19 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.loadingIndicator{
+  @apply invisible
+}
+
+.loadingIndicator.htmx-request {
+  @apply visible
+}
+
+.htmx-request {
+  @apply opacity-50 cursor-not-allowed
+}
+
+.htmx-request button {
+  @apply pointer-events-none
+}
