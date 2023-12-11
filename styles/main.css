@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .loadingIndicator{
   @apply invisible
@@ -10,7 +10,7 @@
   @apply visible
 }
 
-.htmx-request {
+.button-container.htmx-request {
   @apply opacity-50 cursor-not-allowed
 }
 

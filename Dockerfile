@@ -6,7 +6,7 @@ WORKDIR /app
 COPY styles ./styles
 COPY pkg/view ./templates
 COPY static ./static
-COPY package.json pnpm-lock.yaml tailwind.config.js ./
+COPY package.json pnpm-lock.yaml *.js ./
 
 FROM node-pnpm as build-css
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
@@ -31,4 +31,5 @@ FROM gcr.io/distroless/static-debian12:nonroot
 WORKDIR /app
 COPY --from=build-css /app/static ./static
 COPY --from=build /app/main ./
+COPY configs ./configs
 CMD [ "/app/main" ]

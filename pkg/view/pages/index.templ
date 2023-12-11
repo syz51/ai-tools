@@ -11,12 +11,12 @@ templ Index() {
  			hx-target="#outputText"
  			hx-indicator=".translate"
 		>
-			@components.TextArea("inputText", "inputText", "Enter text (language auto-detected):", "Text will be auto-translated from its original language...", false)
+			@components.TextArea("inputText", "inputText", "Enter text (language auto-detected):", "Text will be auto-translated from its original language...", false, false)
 			<div class="flex flex-col items-center justify-center gap-2">
 				@components.LanguageDropdown([]string{"中文","英语","韩语","日语"})
 				@components.TranslateButton()
 			</div>
-			@components.TextArea("outputText", "", "Translation result:", "Translation will appear here...", true)
+			@components.TextArea("outputText", "", "Translation result:", "Translation will appear here...", true, true)
 		</form>
 	}
 }

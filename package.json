@@ -2,13 +2,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "watch": "tailwindcss -i styles/styles.css -o static/styles.css --watch",
-    "build": "tailwindcss -i styles/styles.css -o static/styles.css --minify",
+    "watch": "vite build --mode development --watch",
+    "build": "vite build --mode production",
     "air": "air",
-    "dev": "concurrently \"pnpm:watch --color\" \"pnpm:air\""
+    "dev": "concurrently \"pnpm:watch\" \"pnpm:air\""
   },
   "dependencies": {
-    "tailwindcss": "^3.3.6"
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "vite": "^5.0.7"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
