@@ -1,0 +1,2 @@
+port: 8080
+openaiServiceUrl: http://localhost:8000

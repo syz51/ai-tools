@@ -10,8 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to run the server:
 
-- Go (version 1.21)
-- node
+- Go (version 1.21+)
+- node (version 20+)
 - pnpm (optional)
 - templ (go template library)
 - air (optional for go hot reloading)
