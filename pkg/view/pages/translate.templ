@@ -1,0 +1,24 @@
+package pages
+
+import (
+	"ai-web/pkg/view/layouts"
+	"ai-web/pkg/view/components"
+)
+
+templ Translate() {
+	@layouts.Layout(components.Header(), components.Footer(),"Text Translator") {
+		<form
+ 			class="flex flex-col md:flex-row items-center justify-center p-4 gap-4"
+ 			hx-post="/translate/text"
+ 			hx-target="#outputText"
+ 			hx-indicator=".translate"
+		>
+			@components.TextArea("inputText", "inputText", "Enter text (language auto-detected):", "Text will be auto-translated from its original language...", false, false)
+			<div class="flex flex-col items-center justify-center gap-2">
+				@components.LanguageDropdown([]string{"中文","英语","韩语","日语"})
+				@components.TranslateButton()
+			</div>
+			@components.TextArea("outputText", "", "Translation result:", "Translation will appear here...", true, true)
+		</form>
+	}
+}

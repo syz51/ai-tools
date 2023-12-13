@@ -1,22 +1,15 @@
 package pages
 
-import "ai-web/pkg/view/components"
-import "ai-web/pkg/view/layouts"
+import (
+	"ai-web/pkg/view/layouts"
+	"ai-web/pkg/view/components"
+)
 
 templ Index() {
-	@layouts.Layout() {
-		<form
- 			class="flex flex-col md:flex-row items-center justify-center min-h-screen p-4 gap-4"
- 			hx-post="/translate"
- 			hx-target="#outputText"
- 			hx-indicator=".translate"
-		>
-			@components.TextArea("inputText", "inputText", "Enter text (language auto-detected):", "Text will be auto-translated from its original language...", false, false)
-			<div class="flex flex-col items-center justify-center gap-2">
-				@components.LanguageDropdown([]string{"中文","英语","韩语","日语"})
-				@components.TranslateButton()
-			</div>
-			@components.TextArea("outputText", "", "Translation result:", "Translation will appear here...", true, true)
-		</form>
+	@layouts.Layout(components.Header(), components.Footer(), "AI Tools") {
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+			@components.ServiceCard("Text Translation", "Translate your text in any language with our advanced translation tool.", "Try Now", "/translate")
+			@components.ServiceCard("Audio Transcription", "Transcribe your audio files into text in seconds with our transcription tool.", "Try Now", "/transcribe")
+		</div>
 	}
 }
