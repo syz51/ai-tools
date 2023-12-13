@@ -26,7 +26,8 @@ func main() {
 	// Routes
 	handler := handlers.NewHandler(cfg)
 	e.GET("/", handler.Index)
-	e.POST("/translate", handler.Translate)
+	e.GET("/translate", handler.Translate)
+	e.POST("/translate/text", handler.TranslateText)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":" + cfg.Port))

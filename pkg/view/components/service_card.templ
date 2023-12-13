@@ -1,0 +1,13 @@
+package components
+
+templ ServiceCard(title string, description string, buttonText string, buttonLink string) {
+	<div class="card border shadow-xl">
+		<div class="card-body">
+			<h2 class="card-title">{ title }</h2>
+			<p>{ description }</p>
+			<div class="card-actions justify-end">
+				<a class="btn btn-neutral" href={templ.SafeURL(buttonLink)}>{buttonText}</a>
+			</div>
+		</div>
+	</div>
+}

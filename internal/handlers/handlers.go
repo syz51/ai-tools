@@ -21,6 +21,10 @@ func (h *Handler) Index(c echo.Context) error {
 }
 
 func (h *Handler) Translate(c echo.Context) error {
+	return pages.Translate().Render(c.Request().Context(), c.Response().Writer)
+}
+
+func (h *Handler) TranslateText(c echo.Context) error {
 	// Parse the incoming form data
 	inputText := c.FormValue("inputText")
 	targetLanguage := c.FormValue("targetLanguage")

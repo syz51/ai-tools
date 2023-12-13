@@ -1,20 +1,26 @@
 package layouts
 
-templ Layout() {
+templ Layout(header templ.Component, footer templ.Component, title string) {
 	<!DOCTYPE html>
-	<html lang="en">
+	<html lang="en" class="h-full">
 		<head>
 			<meta charset="utf-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
-			<title>Text Translator</title>
+			<title>{ title }</title>
 			<link rel="icon" href="/static/favicon.svg"/>
 			<link rel="stylesheet" href="/static/main.css"/>
 			<script src="/static/htmx.min.js"></script>
 		</head>
-		<body>
-			<main>
+		<body class="flex flex-col h-full" hx-boost="true">
+			if header != nil {
+				@header
+			}
+			<main class="container mx-auto px-4 md:px-6 py-12 md:py-24 flex-grow">
 				{ children... }
 			</main>
+			if footer != nil {
+				@footer
+			}
 		</body>
 	</html>
 }
