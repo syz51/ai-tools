@@ -12,7 +12,8 @@ import (
 
 func NewHandler(cfg *config.Config) *Handler {
 	return &Handler{
-		Config: cfg,
+		config:       cfg,
+		openaiClient: resty.New().SetBaseURL(cfg.OpenaiServiceUrl).SetHeader("Content-Type", "application/json"),
 	}
 }
 
@@ -29,23 +30,20 @@ func (h *Handler) TranslateText(c echo.Context) error {
 	inputText := c.FormValue("inputText")
 	targetLanguage := c.FormValue("targetLanguage")
 
+	// TODO: Replace with validation library
 	if inputText == "" || targetLanguage == "" {
 		return echo.NewHTTPError(http.StatusBadRequest, "Invalid request: Empty Field")
 	}
 
-	// Construct the URL
-	url, err := JoinUrl(h.Config.OpenaiServiceUrl, "translate")
-	if err != nil {
-		c.Logger().Errorf("Failed to parse and join URL: %v", err)
-		return echo.NewHTTPError(http.StatusInternalServerError, "Internal Server Error")
-	}
+	req := new(TranslateRequest)
+	req.Input.Text = inputText
+	req.Input.TargetLanguage = targetLanguage
 
 	var data TranslateResponse
-	resp, err := resty.New().R().
-		SetHeader("Content-Type", "application/json").
-		SetBody(map[string]string{"text": inputText, "targetLanguage": targetLanguage}).
+	resp, err := h.openaiClient.R().
+		SetBody(req).
 		SetResult(&data).
-		Post(url)
+		Post("/translation/text/invoke")
 
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, "HTTP request failed: "+err.Error())
