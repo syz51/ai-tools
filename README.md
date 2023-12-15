@@ -1,6 +1,6 @@
-# Translation Web
+# AI Tools Web
 
-This is a web server written in Go using the Echo framework. It leverages htmx, tailwindcss, and templ for frontend templating.
+This is a web application written in Go using the Echo framework. It leverages htmx, tailwindcss, and templ for frontend templating.
 
 ## Getting Started
 
